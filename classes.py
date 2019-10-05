@@ -33,7 +33,7 @@ class Car:
     """Represente une voiture
     color represente la couleur de la voiture, de type pygame.Color"""
 
-    def __init__(self, color: pygame.Color = pygame.Color(255, 0, 0), abs_rotation:float = -90):
+    def __init__(self, color: pygame.Color = pygame.Color(255, 0, 0), abs_rotation: float = -90):
         """Initialise la voiture
         - color (pygame.Color): couleur de la voiture [par défaut rouge]
         - abs_rotation (float): rotation par rapport au plan de la voiture [par défaut sud]"""
@@ -66,10 +66,11 @@ class Car:
         if not use_absolute_angle:
             angle = self.abs_rotation + angle
         angle = math.radians(angle)
-        direction = vector(round(math.cos(angle),5), round(math.sin(angle),5))
+        direction = vector(round(math.cos(angle), 5),
+                           round(math.sin(angle), 5))
         distances = [lineRayIntersectionPoint(self.position, direction, (
             line.start[0], line.start[1]), (line.end[0], line.end[1])) for line in circuit]
-        distances = [x[0].length() for x in distances if len(x)>0]
+        distances = [x[0].length() for x in distances if len(x) > 0]
         if len(distances) == 0:
             return -1
         shortest_distance = min(distances)
@@ -78,11 +79,11 @@ class Car:
         if return_real_distance:
             return shortest_distance
         return shortest_distance/max_distance
+
     def direction_vector(self):
-        """ renvoie un vecteur de longeur 1 dans la direction de self.abs_rotation"""
-        v = pygame.math.verctor2()
-        v.xy = math.cos(self.abs_rotation) - math.sin(self.abs_rotation) , math.sin(self.abs_rotation) + math.cos(self.abs_rotation)
-        return v
+        """Renvoie un vecteur unitaire dans la direction de self.abs_rotation"""
+        return vector(math.cos(math.radians(self.abs_rotation)) - math.sin(math.radians(self.abs_rotation)), 
+                      math.sin(math.radians(self.abs_rotation)) + math.cos(math.radians(self.abs_rotation)))
 
 
 class Border:
@@ -90,9 +91,8 @@ class Border:
     Ligne droite allant de A(x,y) a B(x,y)"""
 
     def __init__(self, A: tuple, B: tuple, color: pygame.Color = pygame.Color(96, 96, 96)):
-        assert isinstance(A, (tuple, list)) and isinstance(B, (tuple, list)) and len(
-            A) == len(B) == 2, "A et B doivent être des tuples de longueur 2"
-        self.color = color 
+        assert isinstance(A, (tuple, list)) and isinstance(B, (tuple, list)) and len(A) == len(B) == 2, "A et B doivent être des tuples de longueur 2"
+        self.color = color
         self.start = A
         self.end = B
 
