@@ -78,6 +78,11 @@ class Car:
         if return_real_distance:
             return shortest_distance
         return shortest_distance/max_distance
+    def direction_vector(self):
+        """ renvoie un vecteur de longeur 1 dans la direction de self.abs_rotation"""
+        v = pygame.math.verctor2()
+        v.xy = math.cos(self.abs_rotation) - math.sin(self.abs_rotation) , math.sin(self.abs_rotation) + math.cos(self.abs_rotation)
+        return v
 
 
 class Border:
@@ -87,7 +92,7 @@ class Border:
     def __init__(self, A: tuple, B: tuple, color: pygame.Color = pygame.Color(96, 96, 96)):
         assert isinstance(A, (tuple, list)) and isinstance(B, (tuple, list)) and len(
             A) == len(B) == 2, "A et B doivent être des tuples de longueur 2"
-        self.color = color
+        self.color = color 
         self.start = A
         self.end = B
 
