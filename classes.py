@@ -33,12 +33,12 @@ class Car:
     """Represente une voiture
     color represente la couleur de la voiture, de type pygame.Color"""
 
-    def __init__(self, color: pygame.Color = pygame.Color(255, 0, 0), abs_rotation: float = -90):
+    def __init__(self, color: pygame.Color = pygame.Color(255, 0, 0), abs_rotation: float = 90):
         """Initialise la voiture
         - color (pygame.Color): couleur de la voiture [par défaut rouge]
         - abs_rotation (float): rotation par rapport au plan de la voiture [par défaut sud]"""
         self.color = color
-        self.position = [0, 0]
+        self.position = [100,100]
         self.abs_rotation = abs_rotation
 
     def set_position(self, x: int, y: int):
@@ -82,8 +82,8 @@ class Car:
 
     def direction_vector(self):
         """Renvoie un vecteur unitaire dans la direction de self.abs_rotation"""
-        return vector(math.cos(math.radians(self.abs_rotation)) - math.sin(math.radians(self.abs_rotation)), 
-                      math.sin(math.radians(self.abs_rotation)) + math.cos(math.radians(self.abs_rotation)))
+        return vector(math.cos(math.radians(self.abs_rotation)), 
+                      math.sin(math.radians(self.abs_rotation)))
 
 
 class Border:

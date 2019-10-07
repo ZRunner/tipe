@@ -26,17 +26,29 @@ def main():
         cars = [Car() for _ in range(settings.cars_number)]
 
     running = True
+<<<<<<< HEAD
     screen.fill((255, 255, 255))
+=======
+>>>>>>> temp
     dt = 1
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+<<<<<<< HEAD
                 running = False
         draw.circuit(screen, circuit)
+=======
+                running = False 
+        screen.fill((255, 255, 255))
+        draw.circuit(screen, circuit)
+        draw.car(screen,cars)
+>>>>>>> temp
         pygame.display.flip()
+
         # Gestion du mouvement de la voiture
         if settings.manual_control:
             pressed = pygame.key.get_pressed()
+<<<<<<< HEAD
             delta = dt * settings.fps / 1000
             if pressed[settings.left_key]:
                 cars[0].abs_rotation -= settings.car_maniability * delta
@@ -44,6 +56,14 @@ def main():
                 cars[0].abs_rotation += settings.car_maniability * delta
             cars[0].apply_vector(cars[0].direction_vector())
             # print(cars[0].position)
+=======
+            delta = dt * settings.fps /1000
+            if pressed[settings.left_key]:
+                cars[0].abs_rotation -= settings.car_maniability * delta
+            if pressed[settings.right_key]:
+                cars[0].abs_rotation += settings.car_maniability * delta
+            cars[0].apply_vector(cars[0].direction_vector())
+>>>>>>> temp
         dt = clock.tick(settings.fps)
     pygame.quit()
 
