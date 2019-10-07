@@ -1,10 +1,11 @@
 import pygame
 
-# Touches de contrôle de la voiture, et vecteurs mouvements associés
-move_keys = {pygame.K_LEFT: pygame.math.Vector2(-1,0),
-             pygame.K_RIGHT: pygame.math.Vector2(1,0),
-             pygame.K_UP: pygame.math.Vector2(0,1),
-             pygame.K_DOWN: pygame.math.Vector2(0,-1)}
+# Maniabilité du véhicule (nombre de degrés par fps dans un virage)
+car_maniability = 1
+
+# Touches de contrôle de la voiture, gauche et droite
+left_key = pygame.K_LEFT
+right_key = pygame.K_RIGHT
 
 # Contrôle manuel de la voiture
 manual_control = True
