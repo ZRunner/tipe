@@ -1,7 +1,7 @@
 import draw
 import key
 from classes import *
-import settings
+
 import pygame
 
 
@@ -13,8 +13,9 @@ def main():
     """)
 
     pygame.init()
+    import settings # doit ABSOLUMENT être appelé *après* le init()
     clock = pygame.time.Clock()
-    screen = pygame.display.set_mode((800, 800))
+    screen = pygame.display.set_mode(settings.screen_size)
     pygame.display.set_caption("TIPE")
     circuit = [Border((10, 10), (10, 100)), 
             Border((10, 100), (70, 200)), 
