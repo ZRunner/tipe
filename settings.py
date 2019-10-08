@@ -18,4 +18,4 @@ cars_number = 1
 fps = 30
 
 # Taille de la fenêtre
-screen_size = (int(pygame.display.Info().current_w * 0.55), int(pygame.display.Info().current_h * 0.7))
+screen_size = [int(pygame.display.Info().current_h * 0.7)]*2
