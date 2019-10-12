@@ -1,5 +1,6 @@
 import draw
 import key
+from circuit import circuit_creation
 from classes import *
 
 import pygame
@@ -17,10 +18,11 @@ def main():
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode(settings.screen_size)
     pygame.display.set_caption("TIPE")
-    circuit = [Border((10, 10), (10, 100)), 
-            Border((10, 100), (70, 200)), 
-            Border((70, 200), (170, 200))
-            ]
+    # circuit = [Border((10, 10), (10, 100)), 
+    #        Border((10, 100), (70, 200)), 
+    #        Border((70, 200), (170, 200))
+    #        ]
+    circuit = circuit_creation(5) # A TESTER
     if settings.manual_control:
         cars = [Car()]
     else:
