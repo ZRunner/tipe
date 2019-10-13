@@ -1,7 +1,7 @@
 import pygame
 
 # Maniabilité du véhicule (nombre de degrés par fps dans un virage)
-car_maniability = 1
+car_maniability = 2
 
 # Touches de contrôle de la voiture, gauche et droite
 left_key = pygame.K_LEFT

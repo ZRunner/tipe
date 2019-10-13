@@ -11,7 +11,7 @@ def _ligne_droite(n: int, a: tuple, b: tuple) -> tuple:
     - a et b (tuple de deux entiers): coordonnées du début du chemin
     Retourne : [Bordure 1, Bordure 2, point a, point b]
     """
-    x1, x2, y1, y2 = a(0), b(0), a(1), b(1)
+    x1, x2, y1, y2 = a[0], b[0], a[1], b[1]
     x, y = x1-x2, y1-y2
     if x < 0:
         return (Border((x1, y1), (x1, y1-n)), Border((x2, y2), (x2, y2-n)), (x1, y1-n), (x2, y2-n))
@@ -31,52 +31,51 @@ def _virage(d, a, b):
     Retourne : [Bordure 1, Bordure 2, point a, point b]
     """
     taille = settings.screen_size[0]
-    x1, x2, y1, y2 = a(0), b(0), a(1), b(1)
-    n = sqrt((x1-x2) ^ 2+(y1-y2) ^ 2)
+    x1, x2, y1, y2 = a[0], b[0], a[1], b[1]
+    n = sqrt((x1-x2)**2 + (y1-y2) ** 2)
     x, y = x1-x2, y1-y2
     if d == 0:
-        if x < 0:  # renvoie les trait et la position des deux points d'arrivée
-            if x2 > int(4*(taille/20)*sqrt(2)/2):
-                return (Border((x1, y1), (x1+(3*n/2), y1-(3*n/2))), Border((x2, y2), (x2+(n/2), y2-(n/2))), (x2+(3*n/2), y2-(3*n/2)), (x2+(n/2), y2-(n/2)))
+        if x<0 :     #renvoie les trait et la position des deux points d'arrivée
+            if x2<int(4*(taille/20)*sqrt(2)/2) :
+                return (Border((x1,y1),(x1+(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2+(n/2),y2-(n/2))),(x2+(3*n/2),y2-(3*n/2)),(x2+(n/2),y2-(n/2)))
+            else:   #si la route est trop pret du bords de l'ecran on fait le virage dans l'autre sens
+                return((Border((x1,y1),(x1-(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2-(n/2),y2-(n/2))),(x2-(3*n/2),y2-(3*n/2)),(x2-(n/2),y2-(n/2))))
+        if x>0 :
+            if x2>int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1-(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2-(n/2),y2+(n/2))),(x1-(3*n/2),y1+(3*n/2)),(x2-(n/2),y2+(n/2)))
+            else :
+                return(Border((x1,y1),(x1+(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2+(n/2),y2+(n/2))),(x1+(3*n/2),y1+(3*n/2)),(x2+(n/2),y2+(n/2)))
+        if y<0 :
+            if y2<int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1-(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2-(n/2),y2-(n/2))),(x1-(3*n/2),y1-(3*n/2)),(x2-(n/2),y2-(n/2)))
             else:
-                # si la route est trop pret du bords de l'ecran on fait le _virage dans l'autre sens
-                return(_virage(1, a, b))
-        if x > 0:
-            if x2 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1-(3*n/2), y1+(3*n/2))), Border((x2, y2), (x2-(n/2), y2+(n/2))), (x1-(3*n/2), y1+(3*n/2)), (x2-(n/2), y2+(n/2)))
+                return(Border((x1,y1),(x1-(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2-(n/2),y2+(n/2))),(x1-(3*n/2),y1+(3*n/2)),(x2-(n/2),y2+(n/2)))
+        else :
+            if y2>int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1+(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2+(n/2),y2+(n/2))),(x1+(3*n/2),y1+(3*n/2)),(x2+(n/2),y2+(n/2)))
             else:
-                return(_virage(1, a, b))
-        if y < 0:
-            if y2 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1-(3*n/2), y1-(3*n/2))), Border((x2, y2), (x2-(n/2), y2-(n/2))), (x1-(3*n/2), y1-(3*n/2)), (x2-(n/2), y2-(n/2)))
+                return(Border((x1,y1),(x1+(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2+(n/2),y2-(n/2))),(x1+(3*n/2),y1-(3*n/2)),(x2+(n/2),y2-(n/2)))
+    else :
+        if x<0 :
+            if x1>int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1-(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2-(n/2),y2-(n/2))),(x1-(3*n/2),y1-(3*n/2)),(x2-(n/2),y2-(n/2)))
             else:
-                return(_virage(1, a, b))
-        else:
-            if y2 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1+(3*n/2), y1+(3*n/2))), Border((x2, y2), (x2+(n/2), y2+(n/2))), (x1+(3*n/2), y1+(3*n/2)), (x2+(n/2), y2+(n/2)))
+                return(Border((x1,y1),(x1+(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2+(n/2),y2-(n/2))),(x2+(3*n/2),y2-(3*n/2)),(x2+(n/2),y2-(n/2)))
+        if x>0 :
+            if x1<int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1+(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2+(n/2),y2+(n/2))),(x1+(3*n/2),y1+(3*n/2)),(x2+(n/2),y2+(n/2)))
             else:
-                return(_virage(1, a, b))
-    else:
-        if x < 0:
-            if x1 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1-(3*n/2), y1-(3*n/2))), Border((x2, y2), (x2-(n/2), y2-(n/2))), (x1-(3*n/2), y1-(3*n/2)), (x2-(n/2), y2-(n/2)))
+                return(Border((x1,y1),(x1-(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2-(n/2),y2+(n/2))),(x1-(3*n/2),y1+(3*n/2)),(x2-(n/2),y2+(n/2)))
+        if y<0 :
+            if y1>int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1+(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2+(n/2),y2-(n/2))),(x2+(3*n/2),y2-(3*n/2)),(x2+(n/2),y2-(n/2)))
             else:
-                return(_virage(0, a, b))
-        if x > 0:
-            if x1 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1+(3*n/2), y1+(3*n/2))), Border((x2, y2), (x2+(n/2), y2+(n/2))), (x1+(3*n/2), y1+(3*n/2)), (x2+(n/2), y2+(n/2)))
+                return(Border((x1,y1),(x1+(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2+(n/2),y2-(n/2))),(x1+(3*n/2),y1-(3*n/2)),(x2+(n/2),y2-(n/2)))
+        else :
+            if y1<int(4*(taille/20)*sqrt(2)/2) :
+                return(Border((x1,y1),(x1-(3*n/2),y1+(3*n/2))),Border((x2,y2),(x2-(n/2),y2+(n/2))),(x1-(3*n/2),y1+(3*n/2)),(x2-(n/2),y2+(n/2)))
             else:
-                return(_virage(0, a, b))
-        if y < 0:
-            if y1 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1+(3*n/2), y1-(3*n/2))), Border((x2, y2), (x2+(n/2), y2-(n/2))), (x2+(3*n/2), y2-(3*n/2)), (x2+(n/2), y2-(n/2)))
-            else:
-                return(_virage(0, a, b))
-        else:
-            if y1 > int(4*(taille/20)*sqrt(2)/2):
-                return(Border((x1, y1), (x1-(3*n/2), y1+(3*n/2))), Border((x2, y2), (x2-(n/2), y2+(n/2))), (x1-(3*n/2), y1+(3*n/2)), (x2-(n/2), y2+(n/2)))
-            else:
-                return(_virage(0, a, b))
+                return(Border((x1,y1),(x1-(3*n/2),y1-(3*n/2))),Border((x2,y2),(x2-(n/2),y2-(n/2))),(x1-(3*n/2),y1-(3*n/2)),(x2-(n/2),y2-(n/2)))
 
 
 def circuit_creation(n: int) -> list:

@@ -15,12 +15,10 @@ def car(screen: pygame.Surface, cars: list):
     - screen (pygame.Surface): écran du jeu
     - cars (list): liste de toutes les voitures (type Car)"""
     for car in cars:
-        A = rotate(car, [car.position[0] - 20, car.position[1] - 15])
-        B = rotate(car, [car.position[0] + 20, car.position[1] - 15])
-        C = rotate(car, [car.position[0] + 20, car.position[1] + 15])
-        D = rotate(car, [car.position[0] - 20, car.position[1] + 15])
-        #print(A)
-        #print(B)
+        A =[car.position[0] - 20, car.position[1] - 15]
+        B = [car.position[0] + 20, car.position[1] - 15]
+        C = [car.position[0] + 20, car.position[1] + 15]
+        D = [car.position[0] - 20, car.position[1] + 15]
         pygame.draw.line(screen, car.color, A, B, 5)
         pygame.draw.line(screen, car.color, B, C, 5)
         pygame.draw.line(screen, car.color, C, D, 5)

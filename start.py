@@ -1,11 +1,8 @@
 import draw
 import key
 from circuit import circuit_creation
-from classes import *
-
+from classes import * 
 import pygame
-
-
 def main():
     print("""Lancement du programme
 
@@ -14,14 +11,16 @@ def main():
     """)
 
     pygame.init()
-    import settings # doit ABSOLUMENT être appelé *après* le init()
     clock = pygame.time.Clock()
+
+    import settings # doit ABSOLUMENT être appelé *après* le init()
     screen = pygame.display.set_mode(settings.screen_size)
     pygame.display.set_caption("TIPE")
+
     # circuit = [Border((10, 10), (10, 100)), 
-    #        Border((10, 100), (70, 200)), 
-    #        Border((70, 200), (170, 200))
-    #        ]
+    #   Border((10, 100), (70, 200)), 
+    #   Border((70, 200), (170, 200))
+    #   ]
     circuit = circuit_creation(5) # A TESTER
     if settings.manual_control:
         cars = [Car()]
@@ -50,7 +49,7 @@ def main():
             if pressed[settings.right_key]:
                 cars[0].abs_rotation += settings.car_maniability * delta
             cars[0].apply_vector(cars[0].direction_vector())
-            # print(cars[0].position)
+            print(cars[0].position)
 
 
         dt = clock.tick(settings.fps)

@@ -82,8 +82,8 @@ class Car:
 
     def direction_vector(self):
         """Renvoie un vecteur unitaire dans la direction de self.abs_rotation"""
-        return vector(math.cos(math.radians(self.abs_rotation)), 
-                      math.sin(math.radians(self.abs_rotation)))
+        return vector(2 * math.cos(math.radians(self.abs_rotation)), 
+                      2 * math.sin(math.radians(self.abs_rotation)))
 
 
 class Border:
