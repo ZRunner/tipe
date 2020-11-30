@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.abspath('..'))
 # -- Project information -----------------------------------------------------
 
 project = 'TIPE - Voitures autonomes'
-copyright = '2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES'
-author = 'Arthur BLAISE, Florent BEDNAREK, Raphael ERADES'
+copyright = '2020, Z_runner and his friends'
+author = 'Z_runner and some other people'
 
 
 # -- General configuration ---------------------------------------------------
