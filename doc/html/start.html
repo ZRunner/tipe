@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fichier principal &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Classes génériques" href="classes.html" />
+    <link rel="prev" title="Bienvenue sur la documentation de notre TIPE - Voitures autonomes !" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-start">
+<span id="fichier-principal"></span><h1>Fichier principal<a class="headerlink" href="#module-start" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier principal du programme.</p>
+<p>C’est celui à utiliser pour lancer le programme, qui importera tous les autres fichiers
+automatiquement.</p>
+<p>Utilisation : <cite>python start.py</cite></p>
+<dl class="py function">
+<dt id="start.AI_loop">
+<code class="sig-prename descclassname">start.</code><code class="sig-name descname">AI_loop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">circuit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#start.AI_loop" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Boucle principale pour le mode automatique du programme</p>
+<p>Le but ici est d’entraîner des IA pour qu’elles soient le plus performant possible sur le
+circuit, donc en trouver au moins une qui arrive à la fin du circuit sans toucher aucune
+bordure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>circuit</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Un dictionnaire contenant la liste des bordures représentant le circuit, ainsi que les deux
+points définissant la ligne de départ</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Le meilleur réseau de la dernière génération complétée</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference internal" href="classes.html#classes.Network" title="classes.Network">Network</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="start.calc_starting_pos">
+<code class="sig-prename descclassname">start.</code><code class="sig-name descname">calc_starting_pos</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_a</span></em>, <em class="sig-param"><span class="n">point_b</span></em><span class="sig-paren">)</span><a class="headerlink" href="#start.calc_starting_pos" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule la position de départ des voitures, en fonction du circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_a</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Premier point de la bordure supérieure du circuit</p></li>
+<li><p><strong>point_b</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Premier point de la bordure inférieure du circuit</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Les coordonnées du point de départ, et la rotation adéquate</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>), <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="start.check_events">
+<code class="sig-prename descclassname">start.</code><code class="sig-name descname">check_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#start.check_events" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Vérifie les touches entrées par l’utilisateur</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>0 si rien ne se passe, 1 si la génération doit recommencer, 2 si le programme doit se
+quitter, 3 si le programme doit se mettre en pause</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="start.main">
+<code class="sig-prename descclassname">start.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#start.main" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction principale, lançant tout le programme selon la configuration donnée.</p>
+<p>La configuration du programme est disponible dans le fichier <cite>settings.yaml</cite>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="start.manual_loop">
+<code class="sig-prename descclassname">start.</code><code class="sig-name descname">manual_loop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">circuit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#start.manual_loop" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Boucle principale pour le mode manuel du programme</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>circuit</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">Border</span></code></a>]) – La liste des bordures représentant le circuit</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Fichier principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes génériques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evolve.html">Evolution génétique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configManager.html">Gestion de la configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="Chapitre précédent">Bienvenue sur la documentation de notre TIPE - Voitures autonomes !</a></li>
+      <li>Next: <a href="classes.html" title="Chapitre suivant">Classes génériques</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/start.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

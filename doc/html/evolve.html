@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Evolution génétique &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Gestion de la configuration" href="configManager.html" />
+    <link rel="prev" title="Classes génériques" href="classes.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-evolve">
+<span id="evolution-genetique"></span><h1>Evolution génétique<a class="headerlink" href="#module-evolve" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier contenant les fonctions de mutation et d’évolution</p>
+<p>C’est dans ce fichier que l’algorithme de mutation dit « de Darwin » est défini, utilisant une
+combinaison de mutations et de mélanges pour créer une nouvelle génération de réseaux neuronaux
+à partir des meilleurs de l’ancienne génération.</p>
+<dl class="py function">
+<dt id="evolve.darwin">
+<code class="sig-prename descclassname">evolve.</code><code class="sig-name descname">darwin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">networks</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evolve.darwin" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Applique le modèle d’évolution dite « de Darwin » à une population de réseaux neuronaux</p>
+<p>Les réseaux sont triés selon leurs scores, puis les meilleurs d’entre eux sont utilisés pour
+créer d’autres réseaux, remplaçant les moins bons. Enfin, la plus grande partie des réseaux
+subit un phénomène de mutation altérant de manière aléatoire certaines de leurs valeurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>networks</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>]) – Liste des réseaux neuronaux sur lesquels appliquer l’évolution</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Les réseaux unef fois édités</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="classes.html#classes.Network" title="classes.Network">Network</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="evolve.mutation">
+<code class="sig-prename descclassname">evolve.</code><code class="sig-name descname">mutation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">networks</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evolve.mutation" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Génère une mutation sur un réseau neuronal</p>
+<p>Chaque neurone a une faible probabilité de voir son poids modifié à une valeur aléatoire, entre
+-2.0 et 4.0, ainsi que son bias, entre -1.0 et 1.0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>networks</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>]) – Liste de réseaux neuronaux à modifier</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="evolve.swap">
+<code class="sig-prename descclassname">evolve.</code><code class="sig-name descname">swap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n1</span></em>, <em class="sig-param"><span class="n">n2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#evolve.swap" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Mélange les composantes de deux réseaus neuronaux</p>
+<p>Chaque neurone du réseau 1 a 60% de chance de se faire échanger avec le neurone correspondant
+du réseau 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n1</strong> (<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>) – Permier réseau neuronal</p></li>
+<li><p><strong>n2</strong> (<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>) – Second réseau neuronal</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Les deux réseaux une fois mélangés</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>[<a class="reference internal" href="classes.html#classes.Network" title="classes.Network">Network</a>, <a class="reference internal" href="classes.html#classes.Network" title="classes.Network">Network</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Fichier principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes génériques</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Evolution génétique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configManager.html">Gestion de la configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="classes.html" title="Chapitre précédent">Classes génériques</a></li>
+      <li>Next: <a href="configManager.html" title="Chapitre suivant">Gestion de la configuration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/evolve.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

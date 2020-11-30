@@ -1,0 +1,13 @@
+{
+    "background": "#FFFFFF",
+    "borders": "#606060",
+    "border-begin": "#F5F5F5",
+    "border-end": "#F51E1E",
+    "main_car": "#00FF00",
+    "cars": "#FF0000",
+    "text": "#001111",
+    "fps-colors": ["#FF0000", "#FF9900", "#339900"],
+    "dead-stats": "#FF1414",
+    "neuron-color": "#2828FA",
+    "neuron-text-color": "#FFFFFF"
+}

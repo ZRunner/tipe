@@ -1,1 +1,2 @@
 pygame >= 1.9.6
+ruamel.yaml >= 0.16

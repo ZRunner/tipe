@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Affichage sur l’écran &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Génération du circuit" href="circuit.html" />
+    <link rel="prev" title="Gestion de la configuration" href="configManager.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-draw">
+<span id="affichage-sur-l-ecran"></span><h1>Affichage sur l’écran<a class="headerlink" href="#module-draw" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier contenant différentes méthodes relative à l’affichage de donnés dans la fenêtre.</p>
+<dl class="py function">
+<dt id="draw.car">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">car</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">cars</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.car" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Dessine les voitures sur le circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>cars</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Car" title="classes.Car"><code class="xref py py-class docutils literal notranslate"><span class="pre">Car</span></code></a>]) – Liste de toutes les voitures (type Car)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.car_network">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">car_network</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">font</span></em>, <em class="sig-param"><span class="n">network</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.car_network" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affiche le réseau neuronal d’une voiture</p>
+<p>Chaque neurone sera représenté avec sa valeur, ainsi que les liaisons pondérées entre eux</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>font</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/font.html#module-pygame.font" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygame.font</span></code></a>) – La police utilisée</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>) – Le réseau neuronal dont les informations seront extraites</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.car_specs">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">car_specs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">font</span></em>, <em class="sig-param"><span class="n">network</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.car_specs" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affiche des informations sur la voiture sélectionnée</p>
+<p>Ces informations contionnent le score actuel de la voiture, sa direction et sa vitesse</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>font</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/font.html#module-pygame.font" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygame.font</span></code></a>) – La police utilisée</p></li>
+<li><p><strong>network</strong> (<a class="reference internal" href="classes.html#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>) – Le réseau neuronal dont les informations seront extraites</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.circuit">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">circuit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">circuit</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.circuit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Création du circuit sur l’écran</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>circuit</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="classes.html#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">Border</span></code></a>]) – Liste de toutes les bordures</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.drawvec">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">drawvec</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">car</span></em>, <em class="sig-param"><span class="n">angle</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">style</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.drawvec" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Dessine un rayon partant d’une voiture
+Ce rayon est défini par la position de la voiture ainsi que l’angle et la longueur donnée</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>car</strong> (<a class="reference internal" href="classes.html#classes.Car" title="classes.Car"><code class="xref py py-class docutils literal notranslate"><span class="pre">Car</span></code></a>) – La voiture propriétaire de ce rayon</p></li>
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – L’angle du rayon, en degrés</p></li>
+<li><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – La longueur du rayon</p></li>
+<li><p><strong>style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Le style a utiliser (une croix au bout, ou un trait droit)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.general_stats">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">general_stats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">font</span></em>, <em class="sig-param"><span class="n">clock</span></em>, <em class="sig-param"><span class="n">gen_nbr</span></em>, <em class="sig-param"><span class="n">cars_nbr</span></em>, <em class="sig-param"><span class="n">start_time</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.general_stats" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Affiche les informations générales à l’écran</p>
+<p>Ces informations sont constituées des FPS actuels, du numéro de génération, du nombre de
+voitures restantes, et du temps passé depuis le début de la génération.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>font</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/font.html#module-pygame.font" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygame.font</span></code></a>) – La police à utiliser</p></li>
+<li><p><strong>clock</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/time.html#pygame.time.Clock" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clock</span></code></a>) – L’horloge interne de Pygame</p></li>
+<li><p><strong>gen_nbr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Le numéro de génération</p></li>
+<li><p><strong>cars_nbr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Le nombre de voitures restantes</p></li>
+<li><p><strong>start_time</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Timestamp du début de la génération</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.pause_screen">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">pause_screen</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">font</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.pause_screen" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Obscurcis l’écran pour indiquer à l’utilisateur que le programme est en pause</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>font</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/font.html#module-pygame.font" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygame.font</span></code></a>) – La police à utiliser</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="draw.rotate">
+<code class="sig-prename descclassname">draw.</code><code class="sig-name descname">rotate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">car</span></em>, <em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#draw.rotate" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Applique une rotation à un point selon la position et la rotation de la voiture</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>car</strong> (<a class="reference internal" href="classes.html#classes.Car" title="classes.Car"><code class="xref py py-class docutils literal notranslate"><span class="pre">Car</span></code></a>) – Voiture de référence</p></li>
+<li><p><strong>X</strong> (<em>(</em><em>&lt;class 'int'&gt;</em><em>, </em><em>&lt;class 'int'&gt;</em><em>)</em>) – Position du point</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Nouveau point</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(disponible dans Python v3.8)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Fichier principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes génériques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evolve.html">Evolution génétique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configManager.html">Gestion de la configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Affichage sur l’écran</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="configManager.html" title="Chapitre précédent">Gestion de la configuration</a></li>
+      <li>Next: <a href="circuit.html" title="Chapitre suivant">Génération du circuit</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/draw.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

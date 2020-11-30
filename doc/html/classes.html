@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Classes génériques &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Evolution génétique" href="evolve.html" />
+    <link rel="prev" title="Fichier principal" href="start.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-classes">
+<span id="classes-generiques"></span><h1>Classes génériques<a class="headerlink" href="#module-classes" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier contenant les classes utilisées dans le programme</p>
+<p>Il y a les voitures (<a class="reference internal" href="#classes.Car" title="classes.Car"><code class="xref py py-class docutils literal notranslate"><span class="pre">Car</span></code></a>), les bordures du circuit (<a class="reference internal" href="#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">Border</span></code></a>), les réseaux
+neuronaux (<a class="reference internal" href="#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>) et les neurones eux-même (<a class="reference internal" href="#classes.Neuron" title="classes.Neuron"><code class="xref py py-class docutils literal notranslate"><span class="pre">Neuron</span></code></a>).</p>
+<dl class="py class">
+<dt id="classes.Border">
+<em class="property">class </em><code class="sig-prename descclassname">classes.</code><code class="sig-name descname">Border</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">A</span></em>, <em class="sig-param"><span class="n">B</span></em>, <em class="sig-param"><span class="n">color</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Border" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Représente une bordure de circuit</p>
+<p>Ligne droite allant de A(x,y) à B(x,y)</p>
+<dl class="py method">
+<dt id="classes.Border.points">
+<em class="property">property </em><code class="sig-name descname">points</code><a class="headerlink" href="#classes.Border.points" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Tuple contenant le point de départ et le point d’arrivée de la ligne</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="classes.Car">
+<em class="property">class </em><code class="sig-prename descclassname">classes.</code><code class="sig-name descname">Car</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">circuit</span></em>, <em class="sig-param"><span class="n">color</span></em>, <em class="sig-param"><span class="n">abs_rotation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">starting_pos</span><span class="o">=</span><span class="default_value">80, 140</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Représente une voiture</p>
+<p>Celle classe contient toutes les méthodes nécessaires à la création et la gestion de la voiture,
+pour la faire évoluer, récupérer les valeurs de son raytracing, et la remettre à zéro à la fin
+d’une évolution.</p>
+<dl class="py attribute">
+<dt id="classes.Car.abs_rotation">
+<code class="sig-name descname">abs_rotation</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.abs_rotation" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rotation actuelle</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.apply_vector">
+<code class="sig-name descname">apply_vector</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vector</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.apply_vector" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Applique un vecteur à la position de la voiture</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>vector</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/math.html#pygame.math.Vector2" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector2</span></code></a>) – Vecteur à appliquer</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.circuit">
+<code class="sig-name descname">circuit</code><em class="property">: List[Border]</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.circuit" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Liste des bordures du circuit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.color">
+<code class="sig-name descname">color</code><em class="property">: pygame.Color</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.color" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Couleur de la voiture</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.death_time">
+<code class="sig-name descname">death_time</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.death_time" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Timestamp de la mort de la voiture</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.detection">
+<code class="sig-name descname">detection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">screen</span></em>, <em class="sig-param"><span class="n">display_rays</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.detection" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Détecte si la voiture est en collision avec une bordure du circuit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>screen</strong> (<a class="reference external" href="https://www.pygame.org/docs/ref/surface.html#pygame.Surface" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>) – La fenêtre du programme</p></li>
+<li><p><strong>display_rays</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(disponible dans Python v3.8)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]) – Option d’affichage des rayons : sous forme de segment (“Ray”), de croix (“Cross”),
+ou aucun (None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.direction_vector">
+<code class="sig-name descname">direction_vector</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.direction_vector" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Renvoie un vecteur unitaire dans la direction de self.abs_rotation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://www.pygame.org/docs/ref/math.html#pygame.math.Vector2" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vector2</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.distance">
+<code class="sig-name descname">distance</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.distance" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Distance parcourue depuis le début du circuit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.distance_to_segment">
+<code class="sig-name descname">distance_to_segment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.distance_to_segment" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne la distance la plus petite entre la voiture et un segment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>line</strong> (<a class="reference internal" href="#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">Border</span></code></a>) – Bordure définissant le segment à vérifier</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.distances">
+<em class="property">property </em><code class="sig-name descname">distances</code><a class="headerlink" href="#classes.Car.distances" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne la distance de raytracing pour chaque rayon défini</p>
+<p>L’angle des rayons est défini à la création de la voiture, et est le même pour toutes les
+voitures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Distance de raytracing pour chaque angle défini</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.get_score">
+<code class="sig-name descname">get_score</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.get_score" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule le score de la voiture en fonction de la distance parcourue et du temps passé</p>
+<dl class="field-list simple">
+<dt class="field-odd">Renvoie</dt>
+<dd class="field-odd"><p>Score de la voiture à l’instant présent</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.init_pos">
+<code class="sig-name descname">init_pos</code><em class="property">: int, int</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.init_pos" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Position de départ</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.init_rotation">
+<code class="sig-name descname">init_rotation</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.init_rotation" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Rotation de départ</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.last_border">
+<code class="sig-name descname">last_border</code><em class="property">: Border</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.last_border" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ligne d’arrivée du circuit</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.position">
+<code class="sig-name descname">position</code><em class="property">: int, int</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.position" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Position actuelle</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.rays">
+<code class="sig-name descname">rays</code><em class="property">: List[int]</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.rays" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Angles des rayons (raytracing)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.rays_length">
+<code class="sig-name descname">rays_length</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.rays_length" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Longueur des rayons du raytracing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.raytrace">
+<code class="sig-name descname">raytrace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">angle</span></em>, <em class="sig-param"><span class="n">max_distance</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">use_absolute_angle</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">return_real_distance</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.raytrace" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Vérifie si le rayon d’angle donné rencontre un mur avant une certaine distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Angle du rayon en degrés, 0 étant l’avant de la voiture</p></li>
+<li><p><strong>max_distance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Distance maximum à prendre en compte [par défaut 100]</p></li>
+<li><p><strong>use_absolute_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Si l’angle donné est relatif au plan (1) ou à la voiture (0) [par défaut False]</p></li>
+<li><p><strong>return_real_distance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>) – Si la valeur retournée doit être la distance réelle, et non entre 0
+et 1 [par défaut False]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Retourne la distance entre 0 et “max”, 0 étant une collision immédiate et “max” à la
+distance maximum, ou -1 si aucune collision. La valeur de “max” est définie par le
+paramètre <cite>max_distance</cite> si <cite>return_real_distance = True</cite>, 1 sinon.</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.reset" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Remet à zéro quelques options pour le prochain tour</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Car.set_position">
+<code class="sig-name descname">set_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Car.set_position" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Modifie la position absolue de la voiture</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Nouvelle position de la voiture sur l’axe X (abscisse)</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Nouvelle position de la voiture sur l’axe Y (ordonnée)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Car.start_time">
+<code class="sig-name descname">start_time</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Car.start_time" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Timestamp de création de la voiture</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="classes.Network">
+<em class="property">class </em><code class="sig-prename descclassname">classes.</code><code class="sig-name descname">Network</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">car</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Network" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Représentation d’un réseau neuronal</p>
+<p>Le réseau est rattaché à une voiture, et utilise les données de cette voiture (raytracing) pour
+calculer la vitesse et la direction à prendre.</p>
+<p>Le but du programme étant d’obtenir un réseau neuronal le plus performant possible, ammenant sa
+voiture à la fin du circuit sans toucher aucune bordure.</p>
+<dl class="py attribute">
+<dt id="classes.Network.car">
+<code class="sig-name descname">car</code><em class="property">: Car</em><em class="property"> = None</em><a class="headerlink" href="#classes.Network.car" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Voiture liée au réseau</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Network.dead">
+<code class="sig-name descname">dead</code><em class="property">: bool</em><em class="property"> = None</em><a class="headerlink" href="#classes.Network.dead" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Indique si la voiture est rentrée dans un mur</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Network.direction">
+<em class="property">property </em><code class="sig-name descname">direction</code><a class="headerlink" href="#classes.Network.direction" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Direction de la voiture, entre -2.0 et 2.0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Network.engine">
+<em class="property">property </em><code class="sig-name descname">engine</code><a class="headerlink" href="#classes.Network.engine" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Vitesse de la voiture, entre 0.2 et 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Network.from_json">
+<code class="sig-name descname">from_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Network.from_json" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Recrée le réseau et tous ses neurones à partir de données préalablement enregistrées</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Données enregistrées sur le réseau neuronal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Network.score">
+<code class="sig-name descname">score</code><em class="property">: int</em><em class="property"> = None</em><a class="headerlink" href="#classes.Network.score" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Score final du réseau</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Network.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#classes.Network.update" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Recalcule les valeurs de chaque neurone à partir du raytracing de la voiture</p>
+<p>Le raytracing renvoie un certain nombre fixe de valeurs entre 0 et 1, correspondant à la
+distance du mur le plus proche vu par chaque angle. Deux autres neurones sont remplis avec
+la distance et l’angle actuel de la voiture, permettant un calcul semi récursif.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="classes.Neuron">
+<em class="property">class </em><code class="sig-prename descclassname">classes.</code><code class="sig-name descname">Neuron</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">weigth_len</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Neuron" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Neurone composant le réseau neuronal (<a class="reference internal" href="#classes.Network" title="classes.Network"><code class="xref py py-class docutils literal notranslate"><span class="pre">Network</span></code></a>)</p>
+<p>Il possède une valeur, une constante, et une liste de poids régulant l’influence de ce neurone
+sur la couche suivante.</p>
+<dl class="py attribute">
+<dt id="classes.Neuron.bias">
+<code class="sig-name descname">bias</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Neuron.bias" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Constante du neurone</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Neuron.from_json">
+<code class="sig-name descname">from_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Neuron.from_json" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Recrée le neurone à partir de données préalablement enregistrées</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>) – Données enregistrées sur le neurone</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Neuron.normalize">
+<code class="sig-name descname">normalize</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#classes.Neuron.normalize" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Normalise la valeur actuelle du neurone pour s’assurer qu’elle soit entre 0 et 1</p>
+<p>On utilise ici la fonction sigmoide pour plus de modularité, avec un coefficient de 3.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="classes.Neuron.update_value">
+<code class="sig-name descname">update_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">neurons</span></em>, <em class="sig-param"><span class="n">target</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.Neuron.update_value" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Recalcule la valeur du neurone à partir des neurones de la couche précédente</p>
+<p>La valeur est calculée en faisant la somme coefficientée de la valeur des autres neurones,
+puis en y ajoutant la constante de ce neurone.
+Pour finir, on passe par une normalisation de la valeur afin de la rendre utilisable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>neurons</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference internal" href="#classes.Neuron" title="classes.Neuron"><code class="xref py py-class docutils literal notranslate"><span class="pre">Neuron</span></code></a>]) – Liste des neurones de la couche précédente</p></li>
+<li><p><strong>target</strong> – Indice du neurone actuel, utilisé pour retrouver les bons poids dans la liste des poids
+des précédents neurones</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="classes.Neuron.value">
+<code class="sig-name descname">value</code><em class="property">: float</em><em class="property"> = None</em><a class="headerlink" href="#classes.Neuron.value" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Valeur actuelle du neurone</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="classes.line_intersection">
+<code class="sig-prename descclassname">classes.</code><code class="sig-name descname">line_intersection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">line1</span></em>, <em class="sig-param"><span class="n">line2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.line_intersection" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Donne le point d’intersection entre deux lignes</p>
+<p>Le « rayon » peut être assimilié à une demi-droite, dont on cherche à définir le point
+d’intersection avec un segment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line1</strong> (Tuple[Tuple[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) – Première ligne, constituée de deux points départ et arrivée, eux-même définis par des
+couples d’entiers</p></li>
+<li><p><strong>line2</strong> (Tuple[Tuple[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]) – Deuxième ligne, constituée de deux points départ et arrivée, eux-même définis par des
+couples d’entiers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Coordonnées du point d’intersection, en x et y</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="classes.line_ray_intersection_point">
+<code class="sig-prename descclassname">classes.</code><code class="sig-name descname">line_ray_intersection_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ray_origin</span></em>, <em class="sig-param"><span class="n">ray_direction</span></em>, <em class="sig-param"><span class="n">point1</span></em>, <em class="sig-param"><span class="n">point2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#classes.line_ray_intersection_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Donne le vecteur allant de l’origine vers le point d’intersection.</p>
+<p>Le « rayon » peut être assimilié à une demi-droite, dont on cherche à définir le point
+d’intersection avec un segment.
+Source du code : <a class="reference external" href="http://bit.ly/2VfSFOV">http://bit.ly/2VfSFOV</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ray_origin</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Point d’origine du rayon à analyser</p></li>
+<li><p><strong>ray_direction</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Direction du rayon, en coordonnées (x, y)</p></li>
+<li><p><strong>point1</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Première extrémité du segment</p></li>
+<li><p><strong>point2</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Deuxième extrémité du segment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Coordonnées du point d’intersection, en x et y</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>(<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Fichier principal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Classes génériques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evolve.html">Evolution génétique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configManager.html">Gestion de la configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="start.html" title="Chapitre précédent">Fichier principal</a></li>
+      <li>Next: <a href="evolve.html" title="Chapitre suivant">Evolution génétique</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/classes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

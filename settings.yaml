@@ -1,0 +1,30 @@
+# Maniabilité du véhicule (nombre de degrés max par frame dans un virage)
+car_maniability: 1.5
+
+# Touches de contrôle de la voiture, gauche et droite
+left_key: K_LEFT
+right_key: K_RIGHT
+
+# Contrôle manuel de la voiture (True/False)
+manual_control: False
+
+# Affichage du raycasting (None/Ray/Cross)
+display_rays: None
+
+# Nombre de voitures lors du mode automatique
+cars_number: 30
+
+# Couleur de la voiture (mode manuel uniquement)
+car_color: "#FF0000"
+
+# Taille de la fenêtre [par défaut 1200*700]
+screen_size: [1200,700]
+
+# Thème utilisé (light/dark)
+theme: light
+
+# Utilisation du debug, qui affichera les statistiques de performances dans un fichier log (True/False)
+debug_mode: False
+
+# Sauvegarde automatique du meilleure réseau neuronal à la fin du programme
+autosave: False

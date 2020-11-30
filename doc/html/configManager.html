@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gestion de la configuration &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Génération du circuit" href="circuit.html" />
+    <link rel="prev" title="Evolution génétique" href="evolve.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-config_manager">
+<span id="gestion-de-la-configuration"></span><h1>Gestion de la configuration<a class="headerlink" href="#module-config_manager" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Gestionnaire de la configuration utilisateur</p>
+<p>C’est dans ce fichier que se trouve la classe <a class="reference internal" href="#config_manager.Config" title="config_manager.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> enregistrant toutes les
+configurations du programme, éditables dans le fichier “settings.yaml”.</p>
+<dl class="py class">
+<dt id="config_manager.Config">
+<em class="property">class </em><code class="sig-prename descclassname">config_manager.</code><code class="sig-name descname">Config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">conf</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config_manager.Config" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Classe contenant la vérification utilisateur</p>
+<p>Elle est chargée depuis le fichier “settings.yaml” par la fonction <a class="reference internal" href="#config_manager.load_from_filename" title="config_manager.load_from_filename"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_from_filename()</span></code></a>,
+en utilisant le parseur YAML.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><em>float</em></a>) – 1: Echelle de l’écran en X</p></li>
+<li><p><strong>scale_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><em>float</em></a>) – 1: Echelle de l’écran en Y</p></li>
+<li><p><strong>scale_avg</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><em>float</em></a>) – 1: Echelle moyenne des formes (pour des cercles par exemple)</p></li>
+<li><p><strong>car_maniability</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><em>float</em></a>) – Maniabilité des voitures (nombre de degrés max par image dans
+un virage)</p></li>
+<li><p><strong>left_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><em>int</em></a>) – Touche du clavier pour tourner à gauche</p></li>
+<li><p><strong>right_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><em>int</em></a>) – Touche du clavier pour tourner à droite</p></li>
+<li><p><strong>manual_control</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><em>bool</em></a>) – Si le contrôle est manuel ou géré par les IAs</p></li>
+<li><p><strong>display_rays</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><em>str</em></a><em>]</em>) – Méthode d’affichage du raytracing (None/”Ray”/”Cross”)</p></li>
+<li><p><strong>cars_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><em>int</em></a>) – Nombre de voitures à utiliser en mode automatique</p></li>
+<li><p><strong>car_color</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><em>str</em></a>) – Couleur des voitures, en format hexa (mode manuel uniquement)</p></li>
+<li><p><strong>screen_size</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><em>int</em></a><em>]</em>) – Taille de la fenêtre</p></li>
+<li><p><strong>theme</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><em>str</em></a>) – Thème graphique utilisé, parmi une liste définie (light/dark)</p></li>
+<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><em>dict</em></a>) – Liste de couleurs utilisées, définie par le thème graphique</p></li>
+<li><p><strong>debug_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><em>bool</em></a>) – Utilisation du mode de débugage, qui liste les performances du programme
+et de chaque fonction appelée.</p></li>
+<li><p><strong>autosave</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><em>bool</em></a>) – Sauvegarde automatique du meilleure réseau neuronal à la fin du programme</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="config_manager.load_from_filename">
+<code class="sig-prename descclassname">config_manager.</code><code class="sig-name descname">load_from_filename</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#config_manager.load_from_filename" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Charge le fichier de configuration pour initialiser une nouvelle classe Config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>) – Nom du fichier de configuration</p>
+</dd>
+<dt class="field-even">Type renvoyé</dt>
+<dd class="field-even"><p><a class="reference internal" href="#config_manager.Config" title="config_manager.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Fichier principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes génériques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evolve.html">Evolution génétique</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gestion de la configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="evolve.html" title="Chapitre précédent">Evolution génétique</a></li>
+      <li>Next: <a href="circuit.html" title="Chapitre suivant">Génération du circuit</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/configManager.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

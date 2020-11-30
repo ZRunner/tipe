@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Génération du circuit &#8212; Documentation TIPE - Voitures autonomes </title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Gestion de la configuration" href="configManager.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-circuit">
+<span id="generation-du-circuit"></span><h1>Génération du circuit<a class="headerlink" href="#module-circuit" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Fichier contenant le nécessaire pour générer un circuit</p>
+<p>Le circuit est généré de manière procédurale, à partir de quelques points de référence.
+Des lignes sont tracées entre ces points, puis chaque ligne est pliée plusieurs fois de suite
+jusqu’à obtenir le tracé général du circuit. Une épaisseur pseudo-aléatoire est ensuite ajoutée.</p>
+<p>La seule classe publique est ici <a class="reference internal" href="#circuit.circuit_creation" title="circuit.circuit_creation"><code class="xref py py-func docutils literal notranslate"><span class="pre">circuit_creation()</span></code></a>.</p>
+<p>Les constantes affichées ici sont exprimées en pixels selon la taille par défaut de la fenêtre,
+mais sont adaptées à la taille réelle.</p>
+<dl class="py data">
+<dt id="circuit.END_POINT">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">END_POINT</code><em class="property"> = (1100, 100)</em><a class="headerlink" href="#circuit.END_POINT" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Point approximatif d’arrivée du circuit</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.GENERATIONS_NUMBER">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">GENERATIONS_NUMBER</code><em class="property"> = 9</em><a class="headerlink" href="#circuit.GENERATIONS_NUMBER" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Nombre de générations successives à appliquer sur la courbe. Plus ce nombre est grand, plus la
+courbe sera détaillée</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.INTERMEDIATE_POINTS">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">INTERMEDIATE_POINTS</code><em class="property"> = [(500, 160), (650, 600), (900, 600)]</em><a class="headerlink" href="#circuit.INTERMEDIATE_POINTS" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Liste de points utilisés pour dessiner la courbe générale</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MAX_ANGLE_DEGREES">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MAX_ANGLE_DEGREES</code><em class="property"> = 175</em><a class="headerlink" href="#circuit.MAX_ANGLE_DEGREES" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Mesure maximum d’un angle pour le considérer valide, en degrés</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MAX_COST_COEF">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MAX_COST_COEF</code><em class="property"> = 1.0</em><a class="headerlink" href="#circuit.MAX_COST_COEF" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Coefficient du coût maximal d’un nouveau point (calculé à partir de la distance à son segment
+d’origine)</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MAX_PATH_WIDTH">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MAX_PATH_WIDTH</code><em class="property"> = 105</em><a class="headerlink" href="#circuit.MAX_PATH_WIDTH" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Largeur maximale du circuit</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MIN_ANGLE_DEGREES">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MIN_ANGLE_DEGREES</code><em class="property"> = 90</em><a class="headerlink" href="#circuit.MIN_ANGLE_DEGREES" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Mesure minimum d’un angle pour le considérer valide, en degrés</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MIN_PATH_WIDTH">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MIN_PATH_WIDTH</code><em class="property"> = 70</em><a class="headerlink" href="#circuit.MIN_PATH_WIDTH" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Largeur minimale du circuit</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.MIN_SEGMENT_LENGTH">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">MIN_SEGMENT_LENGTH</code><em class="property"> = 40</em><a class="headerlink" href="#circuit.MIN_SEGMENT_LENGTH" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Longueur minimale d’un segment</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.RANDOM_GENPOINT_AMPLITUDE">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">RANDOM_GENPOINT_AMPLITUDE</code><em class="property"> = 0.2</em><a class="headerlink" href="#circuit.RANDOM_GENPOINT_AMPLITUDE" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Amplitude de la distance entre un nouveau point et son segment d’origine, entre 0 et 1</p>
+</dd></dl>
+
+<dl class="py data">
+<dt id="circuit.START_POINT">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">START_POINT</code><em class="property"> = (50, 120)</em><a class="headerlink" href="#circuit.START_POINT" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Point approximatif de départ du circuit</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.add_width">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">add_width</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pathway</span></em>, <em class="sig-param"><span class="n">colors</span></em>, <em class="sig-param"><span class="n">screen_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.add_width" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Elargit le circuit à partir du tracé de base</p>
+<p>Pour chaque segment du tracé, on calcule la médiatrice du segment puis on trouve deux points
+sur cette médiatrice dont la distance respecte les constantes posées. Un nettoyage est ensuite
+réalisé pour supprimer les angles trop bruts ou inutiles, par la fonction <a class="reference internal" href="#circuit.check_angles" title="circuit.check_angles"><code class="xref py py-func docutils literal notranslate"><span class="pre">check_angles()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pathway</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]) – Liste des points du tracé de base</p></li>
+<li><p><strong>colors</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://www.pygame.org/docs/ref/color.html#pygame.Color" title="(disponible dans pygame v2.0.0.dev7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>]) – Dictionnaire des couleurs à utiliser</p></li>
+<li><p><strong>screen_size</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Taille en X,Y de la fenêtre</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Dictionnaire contenant le premier point supérieur (“point1”), le premier point inférieur
+(“point2”) et toutes les <a class="reference internal" href="classes.html#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">classes.Border</span></code></a> du circuit (“bordures”)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.calc_angle">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">calc_angle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_a</span></em>, <em class="sig-param"><span class="n">point_b</span></em>, <em class="sig-param"><span class="n">point_c</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.calc_angle" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule un angle ABC à partir de coordonnées</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_a</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Premier point de l’angle, sous forme (x, y)</p></li>
+<li><p><strong>point_b</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Deuxième point de l’angle, sous forme (x, y)</p></li>
+<li><p><strong>point_c</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Troisième point de l’angle, sous forme (x, y)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Mesure de l’angle, en degrés</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.calc_distance">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">calc_distance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_a</span></em>, <em class="sig-param"><span class="n">point_b</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.calc_distance" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Calcule la distance entre deux points A et B, assimilé à la longueur du segment [A, B]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_a</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Premier point du segment, sous forme (x, y)</p></li>
+<li><p><strong>point_b</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Deuxième point du segment, sous forme (x, y)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Longueur du segment, arrondi à l’entier le plus proche</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.check_angles">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">check_angles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pathway</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.check_angles" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Vérifie si le chemin ne contient pas d’angle bizarre</p>
+<p>Chaque angle bizarre sera supprimé, pour « nettoyer » la courbe.</p>
+<p>Un angle est considéré « bizarre » s’il est trop plat ou trop aigu, en référence aux deux
+constantes “MIN_ANGLE_DEGREES” et “MAX_ANGLE_DEGREES”.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>pathway</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>]) – Liste de tous les points composant le chemin</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>True si au moins un point a été supprimé</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.circuit_creation">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">circuit_creation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">settings</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.circuit_creation" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fonction principale générant le circuit.</p>
+<p>C’est elle qui appelle toutes les autres fonctions dans le bon ordre et retourne un circuit
+complet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><p><strong>settings</strong> (<a class="reference internal" href="configManager.html#config_manager.Config" title="config_manager.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a>) – Paramètres du programme, notamment pour l’échelle et les couleurs</p>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Dictionnaire contenant le premier point supérieur (“point1”), le premier point inférieur
+(“point2”) et toutes les <a class="reference internal" href="classes.html#classes.Border" title="classes.Border"><code class="xref py py-class docutils literal notranslate"><span class="pre">classes.Border</span></code></a> du circuit (“bordures”)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.fix_points">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">fix_points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scale_x</span></em>, <em class="sig-param"><span class="n">scale_y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.fix_points" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Recalcule toutes les constantes en appliquant l’échelle donnée par la configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale_x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Echelle en x</p></li>
+<li><p><strong>scale_y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>) – Echelle en y</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="circuit.generate_point">
+<code class="sig-prename descclassname">circuit.</code><code class="sig-name descname">generate_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_a</span></em>, <em class="sig-param"><span class="n">point_b</span></em>, <em class="sig-param"><span class="n">screen_size</span></em>, <em class="sig-param"><span class="n">last_move</span></em>, <em class="sig-param"><span class="n">i</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#circuit.generate_point" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Génère un point entre deux autres</p>
+<dl class="field-list simple">
+<dt class="field-odd">Paramètres</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_a</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Premier point du segment à plier, en (x, y)</p></li>
+<li><p><strong>point_b</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Deuxième point du segment à plier, en (x, y)</p></li>
+<li><p><strong>screen_size</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Taille de la fenêtre, en (x, y)</p></li>
+<li><p><strong>last_move</strong> ((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>)) – Dernier mouvement, en (dx, dy) : chaque coordonnée prend 1 si le delta était positif,
+-1 sinon. Permet de garder une consistance dans les virages</p></li>
+<li><p><strong>i</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>) – Nombre de tentatives échouées pour ce point</p></li>
+</ul>
+</dd>
+<dt class="field-even">Renvoie</dt>
+<dd class="field-even"><p>Coordonnées du nouveau point, et mouvement effectué (équivalent du last_move)</p>
+</dd>
+<dt class="field-odd">Type renvoyé</dt>
+<dd class="field-odd"><p>((<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>), (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(disponible dans Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>))</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TIPE - Voitures autonomes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Fichiers :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="start.html">Fichier principal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes.html">Classes génériques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evolve.html">Evolution génétique</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configManager.html">Gestion de la configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Génération du circuit</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="configManager.html" title="Chapitre précédent">Gestion de la configuration</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Arthur BLAISE, Florent BEDNAREK, Raphael ERADES.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/circuit.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
